@@ -1,6 +1,7 @@
 package io.jansyk13.testlink.app;
 
 import static com.xebialabs.restito.semantics.Action.ok;
+import static com.xebialabs.restito.semantics.Action.resourceContent;
 import static com.xebialabs.restito.semantics.Condition.post;
 import static com.xebialabs.restito.semantics.Condition.withHeader;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
@@ -23,7 +24,8 @@ public class SitAplikaceApplicationTests extends SitAplikaceApplicationComponent
                         post("/")
                 )
                 .then(
-                        ok()
+                        ok(),
+                        resourceContent("xml/checkDevKeyResponse.xml")
                 );
 
         fire()
