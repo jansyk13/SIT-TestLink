@@ -1,52 +1,54 @@
 package io.jansyk13.testlink.app;
 
-import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.junit.After;
-import org.junit.Before;
+import static com.xebialabs.restito.semantics.Action.ok;
+import static com.xebialabs.restito.semantics.Condition.post;
+import static com.xebialabs.restito.semantics.Condition.withHeader;
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import net.jadler.JadlerMocker;
-import net.jadler.stubbing.server.jdk.JdkStubHttpServer;
-import net.jadler.stubbing.server.jetty.JettyStubHttpServer;
-import net.javacrumbs.restfire.RequestBuilder;
-import net.javacrumbs.restfire.RequestFactory;
-import net.javacrumbs.restfire.RequestProcessor;
-import net.javacrumbs.restfire.httpcomponents.HttpComponentsRequestFactory;
-
 @RunWith(SpringRunner.class)
-@SpringBootTest
-public class SitAplikaceApplicationTests {
+@SpringBootTest(webEnvironment = RANDOM_PORT)
+public class SitAplikaceApplicationTests extends SitAplikaceApplicationComponentTests {
 
-    private JadlerMocker testLinkMocker  = new JadlerMocker(new JdkStubHttpServer(8090));
+    @Test
+    public void testKey() {
+        whenTestLink()
+                .match(
+                        withHeader("content-type", "text/html"),
+                        xmlEquals(getResourceAsString("xml/checkDevKey.xml")),
+                        post("/")
+                )
+                .then(
+                        ok()
+                );
 
-    private final HttpClient httpClient = HttpClientBuilder.create().build();
-
-    private RequestFactory fire() {
-        return new HttpComponentsRequestFactory(httpClient, new RequestProcessor() {
-            @Override
-            public void processRequest(RequestBuilder requestBuilder) {
-                requestBuilder.withPort(8080);
-            }
-        });
-    }
-
-    @Before
-    public void setUp() throws Exception {
-        testLinkMocker.start();
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        testLinkMocker.close();
+        fire()
+                .get()
+                .to("/sit/key")
+                .expectResponse()
+                .havingStatusEqualTo(200);
     }
 
     @Test
-    public void call() {
-        fire().get().to("/sit").expectResponse().havingStatusEqualTo(200);
+    public void testCreateProject() {
+        fire()
+                .post()
+                .to("/sit/projects")
+                .expectResponse()
+                .havingStatusEqualTo(200);
+    }
+
+    @Test
+    public void testGetProject() throws Exception {
+        fire()
+                .post()
+                .to("/sit/projects/test")
+                .expectResponse()
+                .havingStatusEqualTo(200);
     }
 
 }
