@@ -19,9 +19,9 @@ public class SitAplikaceApplicationTests extends SitAplikaceApplicationComponent
     public void testKey() {
         whenTestLink()
                 .match(
-                        withHeader("content-type", "text/html"),
+                        withHeader("content-type", "text/xml"),
                         xmlEquals(getResourceAsString("xml/checkDevKey.xml")),
-                        post("/")
+                        post("/test")
                 )
                 .then(
                         ok(),
@@ -47,10 +47,64 @@ public class SitAplikaceApplicationTests extends SitAplikaceApplicationComponent
     @Test
     public void testGetProject() throws Exception {
         fire()
-                .post()
+                .get()
                 .to("/sit/projects/test")
                 .expectResponse()
                 .havingStatusEqualTo(200);
     }
 
+    @Test
+    public void testCreateTestPlan() throws Exception {
+        fire()
+                .post()
+                .to("/sit/projects/test/testplans")
+                .expectResponse()
+                .havingStatusEqualTo(200);
+    }
+
+    @Test
+    public void testGetTestPlan() throws Exception {
+        fire()
+                .get()
+                .to("/sit/projects/test/testplans/test2")
+                .expectResponse()
+                .havingStatusEqualTo(200);
+
+    }
+
+    @Test
+    public void testCreateTestSuite() throws Exception {
+        fire()
+                .post()
+                .to("/sit/testsuits/test")
+                .expectResponse()
+                .havingStatusEqualTo(200);
+    }
+
+    @Test
+    public void testGetTestSuite() throws Exception {
+        fire()
+                .post()
+                .to("/sit/testsuits/test")
+                .expectResponse()
+                .havingStatusEqualTo(200);
+    }
+
+    @Test
+    public void testCreateBuild() throws Exception {
+        fire()
+                .post()
+                .to("/testplans/test/builds")
+                .expectResponse()
+                .havingStatusEqualTo(200);
+    }
+
+    @Test
+    public void testGetBuilds() throws Exception {
+        fire()
+                .get()
+                .to("/testplans/test/builds")
+                .expectResponse()
+                .havingStatusEqualTo(200);
+    }
 }

@@ -2,6 +2,7 @@ package io.jansyk13.testlink.app;
 
 import static com.xebialabs.restito.builder.stub.StubHttp.whenHttp;
 import static com.xebialabs.restito.semantics.Action.ok;
+import static com.xebialabs.restito.semantics.Action.resourceContent;
 import static com.xebialabs.restito.semantics.Condition.post;
 import static com.xebialabs.restito.semantics.Condition.withHeader;
 
@@ -18,7 +19,9 @@ import org.xmlunit.builder.Input;
 import org.xmlunit.diff.Diff;
 
 import com.xebialabs.restito.builder.stub.StubHttp;
+import com.xebialabs.restito.semantics.Action;
 import com.xebialabs.restito.semantics.Condition;
+import com.xebialabs.restito.semantics.Stub;
 import com.xebialabs.restito.server.StubServer;
 
 import net.javacrumbs.restfire.RequestBuilder;
@@ -34,19 +37,15 @@ public abstract class SitAplikaceApplicationComponentTests {
     private static StubServer testLinkMocker;
 
     static {
-        testLinkMocker = new StubServer(8090);
+        testLinkMocker = new StubServer(8091);
         testLinkMocker.start();
-
-        whenTestLink()
-                .match(
-                        withHeader("content-type", "text/html"),
+        testLinkMocker.addStub(new Stub(
+                Condition.composite(withHeader("content-type", "text/xml"),
                         xmlEquals(getResourceAsString("xml/checkDevKey.xml")),
-                        post("/")
-                )
-                .then(
-                        ok()
-                );
-
+                        post("/test")),
+                Action.composite(ok(),
+                        resourceContent("xml/checkDevKeyResponse.xml"))
+        ));
 
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
