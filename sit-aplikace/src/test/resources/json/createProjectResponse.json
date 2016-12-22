@@ -1,0 +1,12 @@
+{
+  "id": 1,
+  "name": "test",
+  "prefix": "t",
+  "notes": "notes",
+  "enableRequirements": true,
+  "enableTestPriority": true,
+  "enableAutomation": true,
+  "enableInventory": true,
+  "active": true,
+  "public": true
+}

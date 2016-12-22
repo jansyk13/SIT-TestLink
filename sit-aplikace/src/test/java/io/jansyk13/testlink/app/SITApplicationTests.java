@@ -4,6 +4,7 @@ import static com.xebialabs.restito.semantics.Action.ok;
 import static com.xebialabs.restito.semantics.Action.resourceContent;
 import static com.xebialabs.restito.semantics.Condition.post;
 import static com.xebialabs.restito.semantics.Condition.withHeader;
+import static net.javacrumbs.jsonunit.JsonMatchers.jsonStringEquals;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 import org.junit.Test;
@@ -11,20 +12,25 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import net.javacrumbs.jsonunit.JsonAssert;
+import net.javacrumbs.jsonunit.JsonMatchers;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-public class SitAplikaceApplicationTests extends SitAplikaceApplicationComponentTests {
+public class SITApplicationTests extends AbstractSITApplicationTests {
 
     @Test
     public void testKey() {
-        whenTestLink().match(
-                withHeader("content-type", "text/xml"),
-                post("/test"),
-                bodyEquals("xml/checkDevKey.xml")
-        ).then(
-                ok(),
-                resourceContent("xml/checkDevKeyResponse.xml")
-        );
+        whenTestLink()
+                .match(
+                        withHeader("content-type", "text/xml"),
+                        post("/test"),
+                        bodyEquals("xml/checkDevKey.xml")
+                )
+                .then(
+                        ok(),
+                        resourceContent("xml/checkDevKeyResponse.xml")
+                );
 
         fire()
                 .get()
@@ -35,13 +41,24 @@ public class SitAplikaceApplicationTests extends SitAplikaceApplicationComponent
 
     @Test
     public void testCreateProject() {
+        whenTestLink()
+                .match(
+                        withHeader("content-type", "text/xml"),
+                        post("/test"),
+                        bodyEquals("xml/createProject.xml")
+                )
+                .then(
+                        ok(),
+                        resourceContent("xml/createProjectResponse.xml")
+                );
+
         fire()
                 .post()
+                .withBody(getResourceAsString("json/createProject.json"))
                 .to("/sit/projects")
                 .expectResponse()
+                .havingBody(jsonStringEquals(getResourceAsString("json/createProjectResponse.json")))
                 .havingStatusEqualTo(200);
-        //TODO mock + check resource
-        //TODO Honza
     }
 
     @Test

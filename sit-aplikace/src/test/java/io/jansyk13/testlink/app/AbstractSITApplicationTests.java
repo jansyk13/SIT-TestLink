@@ -25,7 +25,7 @@ import net.javacrumbs.restfire.RequestFactory;
 import net.javacrumbs.restfire.RequestProcessor;
 import net.javacrumbs.restfire.httpcomponents.HttpComponentsRequestFactory;
 
-public abstract class SitAplikaceApplicationComponentTests {
+public abstract class AbstractSITApplicationTests {
 
     @LocalServerPort
     private int port;
@@ -35,14 +35,16 @@ public abstract class SitAplikaceApplicationComponentTests {
     static {
         testLinkMocker = new StubServer(8091);
         testLinkMocker.start();
-        whenTestLink().match(
-                withHeader("content-type", "text/xml"),
-                post("/test"),
-                bodyEquals("xml/checkDevKey.xml")
-        ).then(
-                ok(),
-                resourceContent("xml/checkDevKeyResponse.xml")
-        );
+        whenTestLink()
+                .match(
+                        withHeader("content-type", "text/xml"),
+                        post("/test"),
+                        bodyEquals("xml/checkDevKey.xml")
+                )
+                .then(
+                        ok(),
+                        resourceContent("xml/checkDevKeyResponse.xml")
+                );
 
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
@@ -59,6 +61,7 @@ public abstract class SitAplikaceApplicationComponentTests {
             @Override
             public void processRequest(RequestBuilder requestBuilder) {
                 requestBuilder.withPort(port);
+                requestBuilder.withHeader("content-type", "application/json");
             }
         });
     }

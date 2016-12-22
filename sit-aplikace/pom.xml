@@ -50,16 +50,16 @@
         </dependency>
 
         <dependency>
-            <groupId>com.xebialabs.restito</groupId>
-            <artifactId>restito</artifactId>
-            <version>0.8.2</version>
+            <groupId>net.javacrumbs.json-unit</groupId>
+            <artifactId>json-unit</artifactId>
+            <version>1.16.0</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
-            <groupId>org.xmlunit</groupId>
-            <artifactId>xmlunit-core</artifactId>
-            <version>2.3.0</version>
+            <groupId>com.xebialabs.restito</groupId>
+            <artifactId>restito</artifactId>
+            <version>0.8.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
