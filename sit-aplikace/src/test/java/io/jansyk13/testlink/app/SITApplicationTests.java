@@ -60,13 +60,23 @@ public class SITApplicationTests extends AbstractSITApplicationTests {
 
     @Test
     public void testGetProject() throws Exception {
+        whenTestLink()
+                .match(
+                        withHeader("content-type", "text/xml"),
+                        post("/test"),
+                        bodyEquals("xml/getProject.xml")
+                )
+                .then(
+                        ok(),
+                        resourceContent("xml/getProjectResponse.xml")
+                );
+
         fire()
                 .get()
                 .to("/sit/projects/test")
                 .expectResponse()
+                .havingBody(jsonStringEquals(getResourceAsString("json/getProjectResponse.json")))
                 .havingStatusEqualTo(200);
-        //TODO mock + check resource
-        //TODO Honza
     }
 
     @Test

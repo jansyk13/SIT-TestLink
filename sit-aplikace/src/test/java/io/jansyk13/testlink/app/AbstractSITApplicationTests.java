@@ -32,6 +32,10 @@ public abstract class AbstractSITApplicationTests {
 
     private static StubServer testLinkMocker;
 
+    /**
+     * Static block for starting mocker, adding first stub(due to application checking key on startup) and
+     * shutdown hook
+     */
     static {
         testLinkMocker = new StubServer(8091);
         testLinkMocker.start();
@@ -56,6 +60,10 @@ public abstract class AbstractSITApplicationTests {
 
     private final HttpClient httpClient = HttpClientBuilder.create().build();
 
+    /**
+     * Static method for creating {@link RequestFactory}, useful for fluent API. Sets port and
+     * content-type.
+     */
     protected RequestFactory fire() {
         return new HttpComponentsRequestFactory(httpClient, new RequestProcessor() {
             @Override
@@ -66,11 +74,17 @@ public abstract class AbstractSITApplicationTests {
         });
     }
 
+    /**
+     * Clear stubs before each tests
+     */
     @Before
     public void setUp() throws Exception {
         testLinkMocker.clear();
     }
 
+    /**
+     * Delegation to {@link StubHttp#whenHttp(StubServer)}
+     */
     protected static StubHttp whenTestLink() {
         return whenHttp(testLinkMocker);
     }
