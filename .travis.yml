@@ -1,5 +1,4 @@
 language: java
 jdk:
 - oraclejdk8
-script:
-- (cd sit-aplikace & mvn clean test)
+before_script: cd sit-aplikace
