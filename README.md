@@ -19,6 +19,7 @@ parametrizovanou.
 Doporučujeme projekt vypracovat v SoapUI, není to však nutnost. Součástí práce vypracujte také
 testy které prověří funkčnost simulace.
 ##Řešení
+![diagram](https://raw.github.com/jansyk13/SIT-TestLink/master/image1.jpeg)
 ##Autoři
 * Jan Sýkora
 * David Král
