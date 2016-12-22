@@ -28,7 +28,7 @@ testy které prověří funkčnost simulace.
 ![diagram](https://raw.github.com/jansyk13/SIT-TestLink/master/image1.jpeg)
 
 ##Testy
-Lze spusti pomocí příkazu `./mvnw clean test` ve složce  `sit-aplikace` 
+Lze spustit pomocí příkazu `./mvnw clean test` ve složce  `sit-aplikace` 
 
 * klíče
 * vytvoření projektu
