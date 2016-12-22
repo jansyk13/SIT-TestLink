@@ -26,8 +26,10 @@ testy které prověří funkčnost simulace.
 * Synchronní integrace
 * Restito pro mockování TestLink API (https://github.com/mkotsur/restito)
 ![diagram](https://raw.github.com/jansyk13/SIT-TestLink/master/image1.jpeg)
+
 ##Testy
 Lze spusti pomocí příkazu `./mvnw clean test` ve složce  `sit-aplikace` 
+
 * klíče
 * vytvoření projektu
 * vrácení projektu podle názvu 
@@ -37,6 +39,7 @@ Lze spusti pomocí příkazu `./mvnw clean test` ve složce  `sit-aplikace`
 * vrácení test suity podle názvu
 * vytvoření test buildu
 * vrácení test buildů podle názvu test plánu
+
 ##Autoři
 * Jan Sýkora
 * David Král
