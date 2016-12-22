@@ -19,6 +19,10 @@ parametrizovanou.
 Doporučujeme projekt vypracovat v SoapUI, není to však nutnost. Součástí práce vypracujte také
 testy které prověří funkčnost simulace.
 ##Řešení
+* Jednoduchá Spring Boot aplikace
+* Veřejne REST API, převolává TestLink API
+* Java TestLink Client (http://kinow.github.io/testlink-java-api/) 
+* Synchronní integrace
 ![diagram](https://raw.github.com/jansyk13/SIT-TestLink/master/image1.jpeg)
 ##Autoři
 * Jan Sýkora
