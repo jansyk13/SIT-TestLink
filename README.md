@@ -23,7 +23,19 @@ testy které prověří funkčnost simulace.
 * Veřejne REST API, převolává TestLink API
 * Java TestLink Client (http://kinow.github.io/testlink-java-api/) 
 * Synchronní integrace
+* Restito pro mockování TestLink API (https://github.com/mkotsur/restito)
 ![diagram](https://raw.github.com/jansyk13/SIT-TestLink/master/image1.jpeg)
+##Testy
+Lze spusti pomocí příkazu `./mvnw clean test` ve složce  `sit-aplikace` 
+* klíče
+* vytvoření projektu
+* vrácení projektu podle názvu 
+* vytvoření test plánu
+* vrácení test plánu podle názvu a názvu projektu
+* vytvoření test suity
+* vrácení test suity podle názvu
+* vytvoření test buildu
+* vrácení test buildů podle názvu test plánu
 ##Autoři
 * Jan Sýkora
 * David Král
