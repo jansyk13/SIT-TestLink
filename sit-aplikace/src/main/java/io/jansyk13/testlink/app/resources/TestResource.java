@@ -58,12 +58,12 @@ public class TestResource {
     }
 
 
-    @RequestMapping(method = GET, value = "/projects/{projectId}/testplan/{testplanId}")
+    @RequestMapping(method = GET, value = "/projects/{projectId}/testplans/{testplanId}")
     public TestPlan getTestPlan(@PathVariable String projectId, @PathVariable String testplanId) {
         return testLinkAPI.getTestPlanByName(projectId, testplanId);
     }
 
-    @RequestMapping(method = POST, value = "/projects/{projectId}/testplan")
+    @RequestMapping(method = POST, value = "/projects/{projectId}/testplans")
     public TestPlan createTestPlan(@PathVariable String projectId, @RequestBody TestPlan testPlan) {
         return testLinkAPI.createTestPlan(
                 testPlan.getName(),
