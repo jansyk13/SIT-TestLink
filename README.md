@@ -1,4 +1,5 @@
-#Semestrální práce - 4IT475 - Systémové integrační testování
+#Semestrální práce - 4IT475 - Systémové integrační testování [![Build Status](https://travis-ci.org/jansyk13/SIT-TestLink.svg?branch=master)](https://travis-ci.org/jansyk13/SIT-TestLink)
+
 ##Téma
 Simulace webového API
 ##Zadání
