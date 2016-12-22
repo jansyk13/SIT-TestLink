@@ -14,14 +14,10 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.junit.Before;
 import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.util.ResourceUtils;
-import org.xmlunit.builder.DiffBuilder;
-import org.xmlunit.builder.Input;
-import org.xmlunit.diff.Diff;
 
 import com.xebialabs.restito.builder.stub.StubHttp;
-import com.xebialabs.restito.semantics.Action;
+import com.xebialabs.restito.semantics.Call;
 import com.xebialabs.restito.semantics.Condition;
-import com.xebialabs.restito.semantics.Stub;
 import com.xebialabs.restito.server.StubServer;
 
 import net.javacrumbs.restfire.RequestBuilder;
@@ -39,13 +35,14 @@ public abstract class SitAplikaceApplicationComponentTests {
     static {
         testLinkMocker = new StubServer(8091);
         testLinkMocker.start();
-        testLinkMocker.addStub(new Stub(
-                Condition.composite(withHeader("content-type", "text/xml"),
-                        xmlEquals(getResourceAsString("xml/checkDevKey.xml")),
-                        post("/test")),
-                Action.composite(ok(),
-                        resourceContent("xml/checkDevKeyResponse.xml"))
-        ));
+        whenTestLink().match(
+                withHeader("content-type", "text/xml"),
+                post("/test"),
+                bodyEquals("xml/checkDevKey.xml")
+        ).then(
+                ok(),
+                resourceContent("xml/checkDevKeyResponse.xml")
+        );
 
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
@@ -75,16 +72,20 @@ public abstract class SitAplikaceApplicationComponentTests {
         return whenHttp(testLinkMocker);
     }
 
-    protected static Condition xmlEquals(String xmlString) {
-        return Condition.custom(input -> {
-            Diff myDiff = DiffBuilder.compare(Input.fromString(input.getPostBody()))
-                    .withTest(Input.fromString(xmlString))
-                    .build();
-
-            return !myDiff.hasDifferences();
-        });
+    /**
+     * Whitespace insensitive HTTP request body equals (could be trouble some parts of XML are whitespace sensitive)
+     * @param path resource path
+     */
+    protected static Condition bodyEquals(String path) {
+        String resourceAsString = getResourceAsString(path);
+        return Condition.custom((Call input) -> input.getPostBody().replaceAll("\\s+", "").equalsIgnoreCase(resourceAsString.replaceAll("\\s+", "")));
     }
 
+    /**
+     * Locates file on classpath and reads it to String
+     * @param fullPathOnClassPath resource path
+     * @return String content of file
+     */
     public static String getResourceAsString(final String fullPathOnClassPath) {
         try {
             return FileUtils.readFileToString(ResourceUtils.getFile("classpath:" + fullPathOnClassPath));

@@ -17,16 +17,14 @@ public class SitAplikaceApplicationTests extends SitAplikaceApplicationComponent
 
     @Test
     public void testKey() {
-        whenTestLink()
-                .match(
-                        withHeader("content-type", "text/xml"),
-                        xmlEquals(getResourceAsString("xml/checkDevKey.xml")),
-                        post("/test")
-                )
-                .then(
-                        ok(),
-                        resourceContent("xml/checkDevKeyResponse.xml")
-                );
+        whenTestLink().match(
+                withHeader("content-type", "text/xml"),
+                post("/test"),
+                bodyEquals("xml/checkDevKey.xml")
+        ).then(
+                ok(),
+                resourceContent("xml/checkDevKeyResponse.xml")
+        );
 
         fire()
                 .get()
@@ -42,6 +40,8 @@ public class SitAplikaceApplicationTests extends SitAplikaceApplicationComponent
                 .to("/sit/projects")
                 .expectResponse()
                 .havingStatusEqualTo(200);
+        //TODO mock + check resource
+        //TODO Honza
     }
 
     @Test
@@ -51,6 +51,8 @@ public class SitAplikaceApplicationTests extends SitAplikaceApplicationComponent
                 .to("/sit/projects/test")
                 .expectResponse()
                 .havingStatusEqualTo(200);
+        //TODO mock + check resource
+        //TODO Honza
     }
 
     @Test
@@ -60,6 +62,8 @@ public class SitAplikaceApplicationTests extends SitAplikaceApplicationComponent
                 .to("/sit/projects/test/testplans")
                 .expectResponse()
                 .havingStatusEqualTo(200);
+        //TODO mock + check resource
+        //TODO Honza
     }
 
     @Test
@@ -69,7 +73,8 @@ public class SitAplikaceApplicationTests extends SitAplikaceApplicationComponent
                 .to("/sit/projects/test/testplans/test2")
                 .expectResponse()
                 .havingStatusEqualTo(200);
-
+        //TODO mock + check resource
+        //TODO Honza
     }
 
     @Test
@@ -79,6 +84,8 @@ public class SitAplikaceApplicationTests extends SitAplikaceApplicationComponent
                 .to("/sit/testsuits/test")
                 .expectResponse()
                 .havingStatusEqualTo(200);
+        //TODO mock + check resource
+        //TODO David
     }
 
     @Test
@@ -88,6 +95,8 @@ public class SitAplikaceApplicationTests extends SitAplikaceApplicationComponent
                 .to("/sit/testsuits/test")
                 .expectResponse()
                 .havingStatusEqualTo(200);
+        //TODO mock + check resource
+        //TODO David
     }
 
     @Test
@@ -97,6 +106,8 @@ public class SitAplikaceApplicationTests extends SitAplikaceApplicationComponent
                 .to("/testplans/test/builds")
                 .expectResponse()
                 .havingStatusEqualTo(200);
+        //TODO mock + check resource
+        //TODO David
     }
 
     @Test
@@ -106,5 +117,7 @@ public class SitAplikaceApplicationTests extends SitAplikaceApplicationComponent
                 .to("/testplans/test/builds")
                 .expectResponse()
                 .havingStatusEqualTo(200);
+        //TODO mock + check resource
+        //TODO David
     }
 }

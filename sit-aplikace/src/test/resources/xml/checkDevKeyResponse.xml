@@ -1,16 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<methodCall xmlns:ex="http://ws.apache.org/xmlrpc/namespaces/extensions">
-    <methodName>tl.checkDevKey</methodName>
+<?xml version="1.0"?>
+<methodResponse>
     <params>
         <param>
-            <value>
-                <struct>
-                    <member>
-                        <name>devKey</name>
-                        <value>testDevKey</value>
-                    </member>
-                </struct>
-            </value>
+            <value><boolean>1</boolean></value>
         </param>
     </params>
-</methodCall>
+</methodResponse>
