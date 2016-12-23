@@ -28,8 +28,8 @@ testy které prověří funkčnost simulace.
 ![diagram](https://raw.github.com/jansyk13/SIT-TestLink/master/image1.jpeg)
 
 ##Testy
-Lze spustit pomocí příkazu `./mvnw clean test` ve složce  `sit-aplikace` 
-
+Lze spustit pomocí příkazu `./mvnw clean test` ve složce  `sit-aplikace`   
+Link k testům: https://github.com/jansyk13/SIT-TestLink/blob/master/sit-aplikace/src/test/java/io/jansyk13/testlink/app/SITApplicationTests.java
 * klíče
 * vytvoření projektu
 * vrácení projektu podle názvu 
