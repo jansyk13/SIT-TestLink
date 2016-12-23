@@ -43,4 +43,4 @@ Lze spustit pomocí příkazu `./mvnw clean test` ve složce  `sit-aplikace`
 ##Autoři
 * Jan Sýkora
 * David Král
-* Michael Friedman
+* Michael Friedmann
