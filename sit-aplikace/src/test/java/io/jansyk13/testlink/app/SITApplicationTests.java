@@ -146,20 +146,29 @@ public class SITApplicationTests extends AbstractSITApplicationTests {
 
     @Test
     public void testCreateBuild() throws Exception {
+        whenTestLink()
+                .match(
+                        withHeader("content-type", "text/xml"),
+                        post("/test"),
+                        bodyEquals("xml/createBuild.xml")
+                )
+                .then(
+                        ok(),
+                        resourceContent("xml/createBuildResponse.xml")
+                );
         fire()
                 .post()
-                .to("/testplans/test/builds")
+                .withBody(getResourceAsString("json/createBuild.json"))
+                .to("/sit/testplans/test/builds")
                 .expectResponse()
                 .havingStatusEqualTo(200);
-        //TODO mock + check resource
-        //TODO David
     }
 
     @Test
     public void testGetBuilds() throws Exception {
         fire()
                 .get()
-                .to("/testplans/test/builds")
+                .to("/sit/testplans/test/builds")
                 .expectResponse()
                 .havingStatusEqualTo(200);
         //TODO mock + check resource

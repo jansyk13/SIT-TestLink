@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<methodCall xmlns:ex="http://ws.apache.org/xmlrpc/namespaces/extensions">
+    <methodName>tl.createBuild</methodName>
+    <params>
+        <param>
+            <value>
+                <struct>
+                    <member>
+                        <name>devKey</name>
+                        <value>testDevKey</value>
+                    </member>
+                    <member>
+                        <name>testplanid</name>
+                        <value>
+                            <int>1</int>
+                        </value>
+                    </member>
+                    <member>
+                        <name>buildname</name>
+                        <value>testBuild</value>
+                    </member>
+                    <member>
+                        <name>buildnotes</name>
+                        <value>notes</value>
+                    </member>
+                </struct>
+            </value>
+        </param>
+    </params>
+</methodCall>
