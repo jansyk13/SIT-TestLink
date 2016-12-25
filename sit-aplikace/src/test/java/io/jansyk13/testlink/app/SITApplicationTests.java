@@ -159,8 +159,9 @@ public class SITApplicationTests extends AbstractSITApplicationTests {
         fire()
                 .post()
                 .withBody(getResourceAsString("json/createBuild.json"))
-                .to("/sit/testplans/test/builds")
+                .to("/sit/testplans/1/builds")
                 .expectResponse()
+                .havingBody(jsonStringEquals(getResourceAsString("json/createBuildResponse.json")))
                 .havingStatusEqualTo(200);
     }
 

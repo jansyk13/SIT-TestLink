@@ -10,17 +10,17 @@
                         <value>testDevKey</value>
                     </member>
                     <member>
-                        <name>testplanid</name>
+                        <name>testPlanId</name>
                         <value>
                             <int>1</int>
                         </value>
                     </member>
                     <member>
-                        <name>buildname</name>
+                        <name>name</name>
                         <value>testBuild</value>
                     </member>
                     <member>
-                        <name>buildnotes</name>
+                        <name>notes</name>
                         <value>notes</value>
                     </member>
                 </struct>
