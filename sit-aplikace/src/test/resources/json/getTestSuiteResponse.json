@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "testProjectId": null,
+    "name": "test",
+    "details": null,
+    "parentId": null,
+    "order": null,
+    "checkDuplicatedName": null,
+    "actionOnDuplicatedName": null
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "id": 1,
+  "testProjectId": 1,
+  "name": "testSuite",
+  "details": "To je desne tajny",
+  "parentId": null,
+  "order": null,
+  "checkDuplicatedName": null,
+  "actionOnDuplicatedName": null
+}

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <methodCall xmlns:ex="http://ws.apache.org/xmlrpc/namespaces/extensions">
-    <methodName>tl.createBuild</methodName>
+    <methodName>tl.getTestSuitesForTestSuite</methodName>
     <params>
         <param>
             <value>
@@ -10,15 +10,7 @@
                         <value>testDevKey</value>
                     </member>
                     <member>
-                        <name>buildname</name>
-                        <value>testBuild</value>
-                    </member>
-                    <member>
-                        <name>buildnotes</name>
-                        <value>notes</value>
-                    </member>
-                    <member>
-                        <name>testplanid</name>
+                        <name>testsuiteid</name>
                         <value>
                             <i4>1</i4>
                         </value>
