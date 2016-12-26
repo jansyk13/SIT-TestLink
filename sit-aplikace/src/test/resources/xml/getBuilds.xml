@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<methodCall xmlns:ex="http://ws.apache.org/xmlrpc/namespaces/extensions">
+    <methodName>tl.getBuildsForTestPlan</methodName>
+    <params>
+        <param>
+            <value>
+                <struct>
+                    <member>
+                        <name>devKey</name>
+                        <value>testDevKey</value>
+                    </member>
+                    <member>
+                        <name>testplanid</name>
+                        <value>
+                            <i4>1</i4>
+                        </value>
+                    </member>
+                </struct>
+            </value>
+        </param>
+    </params>
+</methodCall>

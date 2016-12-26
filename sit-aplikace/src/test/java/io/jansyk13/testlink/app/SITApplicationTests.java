@@ -124,45 +124,84 @@ public class SITApplicationTests extends AbstractSITApplicationTests {
 
     @Test
     public void testCreateTestSuite() throws Exception {
+        whenTestLink()
+                .match(
+                        withHeader("content-type", "text/xml"),
+                        post("/test"),
+                        bodyEquals("xml/createTestSuite.xml")
+                )
+                .then(
+                        ok(),
+                        resourceContent("xml/createTestSuiteResponse.xml")
+                );
         fire()
                 .post()
-                .to("/sit/testsuits/test")
+                .withBody(getResourceAsString("json/createTestSuite.json"))
+                .to("/sit/testsuites")
                 .expectResponse()
+                .havingBody(jsonStringEquals(getResourceAsString("json/createTestSuiteResponse.json")))
                 .havingStatusEqualTo(200);
-        //TODO mock + check resource
-        //TODO David
     }
 
     @Test
     public void testGetTestSuite() throws Exception {
+        whenTestLink()
+                .match(
+                        withHeader("content-type", "text/xml"),
+                        post("/test"),
+                        bodyEquals("xml/getTestSuite.xml")
+                )
+                .then(
+                        ok(),
+                        resourceContent("xml/getTestSuiteResponse.xml")
+                );
         fire()
-                .post()
-                .to("/sit/testsuits/test")
+                .get()
+                .to("/sit/testsuites/1")
                 .expectResponse()
+                .havingBody(jsonStringEquals(getResourceAsString("json/getTestSuiteResponse.json")))
                 .havingStatusEqualTo(200);
-        //TODO mock + check resource
-        //TODO David
     }
 
     @Test
     public void testCreateBuild() throws Exception {
+        whenTestLink()
+                .match(
+                        withHeader("content-type", "text/xml"),
+                        post("/test"),
+                        bodyEquals("xml/createBuild.xml")
+                )
+                .then(
+                        ok(),
+                        resourceContent("xml/createBuildResponse.xml")
+                );
         fire()
                 .post()
-                .to("/testplans/test/builds")
+                .withBody(getResourceAsString("json/createBuild.json"))
+                .to("/sit/testplans/1/builds")
                 .expectResponse()
+                .havingBody(jsonStringEquals(getResourceAsString("json/createBuildResponse.json")))
                 .havingStatusEqualTo(200);
-        //TODO mock + check resource
-        //TODO David
     }
 
     @Test
     public void testGetBuilds() throws Exception {
+        whenTestLink()
+                .match(
+                        withHeader("content-type", "text/xml"),
+                        post("/test"),
+                        bodyEquals("xml/getBuilds.xml")
+                )
+                .then(
+                        ok(),
+                        resourceContent("xml/getBuildResponse.xml")
+                );
+
         fire()
                 .get()
-                .to("/testplans/test/builds")
+                .to("/sit/testplans/1/builds")
                 .expectResponse()
+                .havingBody(jsonStringEquals(getResourceAsString("json/getBuildsResponse.json")))
                 .havingStatusEqualTo(200);
-        //TODO mock + check resource
-        //TODO David
     }
 }
