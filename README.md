@@ -1,8 +1,8 @@
-#Semestrální práce - 4IT475 - Systémové integrační testování [![Build Status](https://travis-ci.org/jansyk13/SIT-TestLink.svg?branch=master)](https://travis-ci.org/jansyk13/SIT-TestLink)
+# Semestrální práce - 4IT475 - Systémové integrační testování [![Build Status](https://travis-ci.org/jansyk13/SIT-TestLink.svg?branch=master)](https://travis-ci.org/jansyk13/SIT-TestLink)
 
-##Téma
+## Téma
 Simulace webového API
-##Zadání
+## Zadání
 Vaše společnost vyvíjí software, který má být integrován s aplikací TestLink (
 http://testlab.tesena.com/testlink ) . Instalaci TestLinku do Vašeho prostředí zajišťuje externí firma,
 termín dodání je až za dva měsíce. Vy ale už teď potřebujete testovat komunikaci mezi
@@ -27,7 +27,7 @@ testy které prověří funkčnost simulace.
 * Restito pro mockování TestLink API (https://github.com/mkotsur/restito)
 ![diagram](https://raw.github.com/jansyk13/SIT-TestLink/master/image1.jpeg)
 
-##Testy
+## Testy
 Lze spustit pomocí příkazu `./mvnw clean test` ve složce  `sit-aplikace`   
 Link k testům: https://github.com/jansyk13/SIT-TestLink/blob/master/sit-aplikace/src/test/java/io/jansyk13/testlink/app/SITApplicationTests.java
 * klíče
@@ -40,7 +40,7 @@ Link k testům: https://github.com/jansyk13/SIT-TestLink/blob/master/sit-aplikac
 * vytvoření test buildu
 * vrácení test buildů podle názvu test plánu
 
-##Autoři
+## Autoři
 * Jan Sýkora
 * David Král
 * Michael Friedmann
